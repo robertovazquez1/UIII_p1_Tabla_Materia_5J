@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block  cuerpo %}
+<div class="row"><!--la fila-->
+<div class="col"><!--columna izquierda-->
+    <h1> Mommy</h1>
+</div><!--columna izquierda-->
+<div class="col"><!--Derecha-->
+    <h1>Daddy </h1>
+    <div class="table-responsive"><!--Tabla Responsiva-->
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Creditos</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for m in mismaterias %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ m.codigo }}</td>
+                    <td>{{ m.nombre }}</td>
+                    <td>{{ m.creditos }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!--Tabla Responsiva-->
+</div><!--columna Derecha-->
+
+</div> <!--la fila-->
+{% endblock %}
