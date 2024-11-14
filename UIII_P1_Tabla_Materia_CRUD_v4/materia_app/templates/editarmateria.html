@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+<div class="col">
+    <div class="card text-bg-dark"> 
+        <div class="card-body">
+            <form action="/editarmateria/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control"
+                    value={{ mismaterias.codigo }} minlength="6" maxlength="6" readonly required
+                    >
+                </div> 
+                <div class="form-group py-3">
+                    <input type="text" name="txtnombre" id="txtnombre" class="form-control"
+                    value={{mismaterias.nombre}} maxlength="100" required
+                    >
+                </div>
+                <div class="form-group ">
+                    <input type="text" name="numcreditos" id="numcreditos" class="form-control"
+                    value={{mismaterias.creditos}} min="0" max="9" required
+                    >
+                </div>
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-secondary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</div>
+{% endblock %}

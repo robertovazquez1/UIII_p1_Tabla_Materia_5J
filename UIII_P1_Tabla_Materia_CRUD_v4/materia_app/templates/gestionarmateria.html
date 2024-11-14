@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block  cuerpo %}
+<div class="row"><!--la fila-->
+<div class="col"><!--columna izquierda-->
+    <h1> Mommy</h1>
+    <div class="card text-bg-dark"> 
+        <div class="card-body">
+            <form action="/registrarmateria/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="txtcodigo" id="txtcodigo" class="form-control"
+                    placeholder="Codigo Materia" minlength="6" maxlength="6" required
+                    >
+                </div> 
+                <div class="form-group py-3">
+                    <input type="text" name="txtnombre" id="txtnombre" class="form-control"
+                    placeholder="Nombre Materia" maxlength="100" required
+                    >
+                </div>
+                <div class="form-group ">
+                    <input type="text" name="numcreditos" id="numcreditos" class="form-control"
+                    value="0" min="0" max="9" required
+                    >
+                </div>
+                <div class="form-group py-3">
+                    <button type="submit" class="btn btn-secondary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!--columna izquierda-->
+<div class="col"><!--Derecha-->
+    <h1>Listado de materias </h1>
+    <div class="table-responsive"><!--Tabla Responsiva-->
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Creditos</th>
+                <th colspan="2">Creditos</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for m in mismaterias %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ m.codigo }}</td>
+                    <td>{{ m.nombre }}</td>
+                    <td>{{ m.creditos }}</td>
+                    <td> <a href="seleccionarmateria/{{m.codigo}}" class="btn btn-dark">Editar</a></td>
+                    <td> <a href="borrarmateria/{{m.codigo}}" class="btn btn-secondary">Borrar</a></td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div><!--Tabla Responsiva-->
+</div><!--columna Derecha-->
+
+</div> <!--la fila-->
+{% endblock %}
